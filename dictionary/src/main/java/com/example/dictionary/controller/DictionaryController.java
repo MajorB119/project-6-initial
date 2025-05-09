@@ -41,11 +41,11 @@ public class DictionaryController {
         sw.stop();
         long nanoSeconds = sw.getLastTaskTimeNanos();
         String message = new StringBuilder().append("Retrieved entry for [")
-                                            .append(word)
-                                            .append("] in ")
-                                            .append(nanoSeconds / 1000000.0)
-                                            .append("ms")
-                                            .toString();
+                .append(word)
+                .append("] in ")
+                .append(nanoSeconds / 1000000.0)
+                .append("ms")
+                .toString();
         // Log the message
         logger.info(message);
 
@@ -61,13 +61,35 @@ public class DictionaryController {
         sw.stop();
         long nanoSeconds = sw.getLastTaskTimeNanos();
         String message = new StringBuilder().append("Retrieved entries for words starting with [")
-                                            .append(value)
-                                            .append("] containing ")
-                                            .append(entries.size())
-                                            .append(" entries in ")
-                                            .append(nanoSeconds / 1000000.0)
-                                            .append("ms")
-                                            .toString();
+                .append(value)
+                .append("] containing ")
+                .append(entries.size())
+                .append(" entries in ")
+                .append(nanoSeconds / 1000000.0)
+                .append("ms")
+                .toString();
+        // Log the message
+        logger.info(message);
+
+        return entries;
+    }
+
+    @GetMapping("/getWordsEndingWith/{value}")
+    public List<Entry> getWordsEndingWith(@PathVariable String value) {
+
+        StopWatch sw = new StopWatch();
+        sw.start();
+        List<Entry> entries = this.dictionaryService.getWordsEndingWith(value);
+        sw.stop();
+        long nanoSeconds = sw.getLastTaskTimeNanos();
+        String message = new StringBuilder().append("Got entries for words ending with [")
+                .append(value)
+                .append("] containing ")
+                .append(entries.size())
+                .append(" entries in ")
+                .append(nanoSeconds / 1000000.0)
+                .append("ms")
+                .toString();
         // Log the message
         logger.info(message);
 
@@ -83,13 +105,13 @@ public class DictionaryController {
         sw.stop();
         long nanoSeconds = sw.getLastTaskTimeNanos();
         String message = new StringBuilder().append("Retrieved entries for words containing [")
-                                            .append(value)
-                                            .append("] containing ")
-                                            .append(entries.size())
-                                            .append(" entries in ")
-                                            .append(nanoSeconds / 1000000.0)
-                                            .append("ms")
-                                            .toString();
+                .append(value)
+                .append("] containing ")
+                .append(entries.size())
+                .append(" entries in ")
+                .append(nanoSeconds / 1000000.0)
+                .append("ms")
+                .toString();
         // Log the message
         logger.info(message);
 
@@ -105,11 +127,11 @@ public class DictionaryController {
         sw.stop();
         long nanoSeconds = sw.getLastTaskTimeNanos();
         String message = new StringBuilder().append("Retrieved entries for words containing consecutive letters containing ")
-                                            .append(entries.size())
-                                            .append(" entries in ")
-                                            .append(nanoSeconds / 1000000.0)
-                                            .append("ms")
-                                            .toString();
+                .append(entries.size())
+                .append(" entries in ")
+                .append(nanoSeconds / 1000000.0)
+                .append("ms")
+                .toString();
         // Log the message
         logger.info(message);
 
